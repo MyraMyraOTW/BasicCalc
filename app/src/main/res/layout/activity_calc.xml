@@ -7,13 +7,20 @@
     android:orientation="vertical"
     android:weightSum="1">
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:id="@+id/editText"
+        android:ems="10"
+        android:textIsSelectable="true"
+        android:textSize="30dp" />
+
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:layout_width="183dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_row="12"
-        android:layout_column="1">
+        android:layout_gravity="center_horizontal">
 
         <LinearLayout
             android:orientation="horizontal"
