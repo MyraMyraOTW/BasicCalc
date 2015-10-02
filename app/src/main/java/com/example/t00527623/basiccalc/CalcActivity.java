@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class CalcActivity extends AppCompatActivity {
 
@@ -19,6 +20,10 @@ public class CalcActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_calc, menu);
         return true;
     }
+
+    //private View.OnClickListener handlenumbers = new View.OnClickListener() {
+//
+  //  }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
