@@ -8,11 +8,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="7">
+        android:layout_weight="7"
+        android:background="@android:color/darker_gray">
 
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:stretchColumns="1">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -20,16 +22,19 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:id="@+id/history"
                     android:layout_weight="1"
-                    android:textSize="30dp"
+                    android:textSize="20dp"
                     android:paddingTop="0dp"
                     android:paddingBottom="0dp"
                     android:paddingRight="10dp"
                     android:paddingLeft="10dp"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:gravity="center_vertical|right"
+                    android:text="@string/histhint"
+                    android:textColor="@android:color/holo_red_dark" />
             </TableRow>
 
             <TableRow
@@ -37,23 +42,37 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <EditText
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/editText"
-                    android:layout_weight="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="@string/hint"
-                    android:textAlignment="gravity"
+                    android:id="@+id/results"
+                    android:layout_weight="1"
                     android:gravity="center_vertical|right"
-                    android:textSize="50dp"
-                    android:paddingTop="0dp"
-                    android:paddingBottom="0dp"
-                    android:paddingRight="10dp"
                     android:paddingLeft="10dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="0dp"
+                    android:textSize="50dp"
+                    android:textColor="@android:color/black"
+                    android:allowUndo="false"
                     android:singleLine="true"
-                    android:clickable="false" />
+                    android:lines="1"
+                    android:hint="@string/hint"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight=".2">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight=".51"
+                    android:background="@android:color/holo_red_light"></LinearLayout>
             </TableRow>
 
             <TableRow
@@ -63,7 +82,7 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:weightSum="5"
                     android:layout_weight=".05"
@@ -75,7 +94,10 @@
                         android:layout_height="match_parent"
                         android:id="@+id/MemC"
                         android:layout_weight="1"
-                        android:text="@string/MC" />
+                        android:text="@string/MC"
+                        android:allowUndo="false"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -83,7 +105,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/MemN"
                         android:layout_weight="1"
-                        android:text="@string/Mm" />
+                        android:text="@string/Mm"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -91,7 +115,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/MemP"
                         android:layout_weight="1"
-                        android:text="@string/Mp" />
+                        android:text="@string/Mp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -99,7 +125,10 @@
                         android:layout_height="match_parent"
                         android:id="@+id/PMC"
                         android:layout_weight="1"
-                        android:text="@string/pm" />
+                        android:text="@string/pm"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -107,7 +136,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/Cclear"
                         android:layout_weight="1"
-                        android:text="@string/clr" />
+                        android:text="@string/clr"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black" />
 
                 </LinearLayout>
             </TableRow>
@@ -119,7 +150,7 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:weightSum="5"
                     android:layout_weight="1"
@@ -131,7 +162,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B7"
                         android:layout_weight=".73"
-                        android:text="@string/B7" />
+                        android:text="@string/B7"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -139,7 +172,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B8"
                         android:layout_weight=".73"
-                        android:text="@string/B8" />
+                        android:text="@string/B8"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -147,7 +182,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B9"
                         android:layout_weight=".73"
-                        android:text="@string/B9" />
+                        android:text="@string/B9"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -155,7 +192,10 @@
                         android:layout_height="match_parent"
                         android:id="@+id/BBack"
                         android:layout_weight="2.8"
-                        android:text="@string/back" />
+                        android:text="@string/back"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp" />
 
                 </LinearLayout>
             </TableRow>
@@ -167,7 +207,7 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:weightSum="5"
                     android:layout_weight="1"
@@ -179,7 +219,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B4"
                         android:layout_weight="1"
-                        android:text="@string/B4" />
+                        android:text="@string/B4"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -187,7 +229,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B5"
                         android:layout_weight="1"
-                        android:text="@string/B5" />
+                        android:text="@string/B5"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -195,7 +239,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B6"
                         android:layout_weight="1"
-                        android:text="@string/B6" />
+                        android:text="@string/B6"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -203,7 +249,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/Btimes"
                         android:layout_weight="1"
-                        android:text="@string/times" />
+                        android:text="@string/times"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -211,7 +259,10 @@
                         android:layout_height="match_parent"
                         android:id="@+id/Bdiv"
                         android:layout_weight="1"
-                        android:text="@string/div" />
+                        android:text="@string/div"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp" />
 
                 </LinearLayout>
             </TableRow>
@@ -222,8 +273,7 @@
                 android:layout_weight="1">
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:weightSum="5"
                     android:layout_weight="1"
@@ -235,7 +285,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B1"
                         android:layout_weight="1"
-                        android:text="@string/B1" />
+                        android:text="@string/B1"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -243,7 +295,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B2"
                         android:layout_weight="1"
-                        android:text="@string/B2" />
+                        android:text="@string/B2"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -251,7 +305,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B3"
                         android:layout_weight="1"
-                        android:text="@string/B3" />
+                        android:text="@string/B3"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -259,7 +315,10 @@
                         android:layout_height="match_parent"
                         android:id="@+id/Bplus"
                         android:layout_weight="1"
-                        android:text="@string/plus" />
+                        android:text="@string/plus"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -267,7 +326,10 @@
                         android:layout_height="match_parent"
                         android:id="@+id/Bminus"
                         android:layout_weight="1"
-                        android:text="@string/minus" />
+                        android:text="@string/minus"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp" />
 
                 </LinearLayout>
             </TableRow>
@@ -279,7 +341,7 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:weightSum="5"
                     android:layout_weight="1"
@@ -291,7 +353,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B0"
                         android:layout_weight=".73"
-                        android:text="@string/B0" />
+                        android:text="@string/B0"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -299,7 +363,9 @@
                         android:layout_height="match_parent"
                         android:id="@+id/B00"
                         android:layout_weight=".73"
-                        android:text="@string/B00" />
+                        android:text="@string/B00"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -307,7 +373,10 @@
                         android:layout_height="match_parent"
                         android:id="@+id/Bpoint"
                         android:layout_weight=".73"
-                        android:text="@string/Bpoint" />
+                        android:text="@string/Bpoint"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="20dp" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
@@ -315,7 +384,10 @@
                         android:layout_height="match_parent"
                         android:id="@+id/Bequal"
                         android:layout_weight="2.8"
-                        android:text="@string/equals" />
+                        android:text="@string/equals"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:textColor="@android:color/black"
+                        android:textSize="20dp" />
 
                 </LinearLayout>
             </TableRow>
