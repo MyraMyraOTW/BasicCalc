@@ -27,10 +27,24 @@ public class CalcActivity extends AppCompatActivity {
         findViewById(R.id.B9).setOnClickListener(handlenumbers);
         findViewById(R.id.B0).setOnClickListener(handlenumbers);
         findViewById(R.id.B00).setOnClickListener(handlenumbers);
+        findViewById(R.id.Bpoint).setOnClickListener(handlenumbers);
 
         // Operands
+        findViewById(R.id.Cclear).setOnClickListener(handleoperands);
+        findViewById(R.id.Bplus).setOnClickListener(handleoperands);
+        findViewById(R.id.Bminus).setOnClickListener(handleoperands);
+        findViewById(R.id.Bdiv).setOnClickListener(handleoperands);
+        findViewById(R.id.Btimes).setOnClickListener(handleoperands);
+        findViewById(R.id.BBack).setOnClickListener(handleoperands);
+        findViewById(R.id.Bequal).setOnClickListener(handleoperands);
+        findViewById(R.id.PMC).setOnClickListener(handleoperands);
 
         // Advanced Memory
+
+        // TextViews
+        // TextView resultsstd = (TextView) findViewById(R.id.results);
+        // TextView hist = (TextView) findViewById(R.id.history);
+
     }
 
     @Override
@@ -47,6 +61,31 @@ public class CalcActivity extends AppCompatActivity {
             TextView resultsstd = (TextView) findViewById(R.id.results);
             resultsstd.append(std.getText());
         }
+    };
+
+    // Click Listener for Operands
+    private View.OnClickListener handleoperands = new View.OnClickListener() {
+      public void onClick(View v) {
+          TextView resultsstd = (TextView) findViewById(R.id.results);
+          String tmp, tmp1;
+          switch (v.getId()) {
+              case R.id.Cclear:
+                  resultsstd.setText("");
+                  break;
+
+              case R.id.Bplus:
+                  break;
+
+              case R.id.BBack:
+                  tmp = resultsstd.getText().toString();
+                  if (resultsstd.length() > 0){
+                      tmp1 = tmp.substring(0, tmp.length() - 1);
+                      resultsstd.setText(tmp1);
+                  }
+
+
+          }
+      }
     };
 
     @Override
