@@ -15,6 +15,8 @@ public class CalcActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
 
+        // FIXED ALL THE BUGS!!!!!!!
+
         // Digits
         findViewById(R.id.B1).setOnClickListener(handlenumbers);
         findViewById(R.id.B2).setOnClickListener(handlenumbers);
@@ -54,9 +56,11 @@ public class CalcActivity extends AppCompatActivity {
         return true;
     }
 
-    // Global variable used to check if equals has been operated and makes it so operations
+    // Class variable used to check if equals has been operated and makes it so operations
     // performed after equals has been pressed do not include previous variables
     private boolean equalschck = false;
+
+    // Memory Class Variable
     private double Memory = 0.0;
     private String lastchar;
 
@@ -72,18 +76,30 @@ public class CalcActivity extends AppCompatActivity {
                     break;
 
                 case R.id.MemN:
-                    if (resultsstd.length() > 0) {
+                    tmp = resultsstd.getText().toString();
+                    if(resultsstd.length() > 0) {
                         tmp = resultsstd.getText().toString();
-                        tmpdbl = Double.parseDouble(tmp);
-                        Memory = Memory - tmpdbl;
+                        if (tmp.equals(null) || tmp.equals(".")) {
+                            resultsstd.setText("");
+                            break;
+                        } else {
+                            tmpdbl = Double.parseDouble(tmp);
+                            Memory = Memory - tmpdbl;
+                        }
                     }
                     break;
 
                 case R.id.MemP:
-                    if (resultsstd.length() > 0) {
+                    tmp = resultsstd.getText().toString();
+                    if(resultsstd.length() > 0) {
                         tmp = resultsstd.getText().toString();
-                        tmpdbl = Double.parseDouble(tmp);
-                        Memory = Memory + tmpdbl;
+                        if (tmp.equals(null) || tmp.equals(".")) {
+                            resultsstd.setText("");
+                            break;
+                        } else {
+                            tmpdbl = Double.parseDouble(tmp);
+                            Memory = Memory + tmpdbl;
+                        }
                     }
                     break;
 
@@ -94,6 +110,10 @@ public class CalcActivity extends AppCompatActivity {
             }
         }
     };
+
+
+
+
 
     // Click listener for Digits
     private View.OnClickListener handlenumbers = new View.OnClickListener() {
@@ -130,7 +150,7 @@ public class CalcActivity extends AppCompatActivity {
                         }
                         equalschck = false;
                         tmp = resultsstd.getText().toString();
-                        if (tmp.equals("0") || tmp.equals(null)){
+                        if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")){
                             resultsstd.setText("");
                             break;
                         } else {
@@ -150,7 +170,7 @@ public class CalcActivity extends AppCompatActivity {
                         }
                         equalschck = false;
                         tmp = resultsstd.getText().toString();
-                        if (tmp.equals("0") || tmp.equals(null)) {
+                        if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
                             resultsstd.setText("");
                             break;
                         } else {
@@ -170,7 +190,7 @@ public class CalcActivity extends AppCompatActivity {
                         }
                         equalschck = false;
                         tmp = resultsstd.getText().toString();
-                        if (tmp.equals("0") || tmp.equals(null)) {
+                        if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
                             resultsstd.setText("");
                             break;
                         } else {
@@ -190,7 +210,7 @@ public class CalcActivity extends AppCompatActivity {
                         }
                         equalschck = false;
                         tmp = resultsstd.getText().toString();
-                        if (tmp.equals("0") || tmp.equals(null)) {
+                        if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
                             resultsstd.setText("");
                             break;
                         } else {
@@ -218,22 +238,10 @@ public class CalcActivity extends AppCompatActivity {
                         } else {
                             equalschck = false;
                             tmp = resultsstd.getText().toString();
-                            if (tmp.equals("0") || tmp.equals(null)) {
-                                resultsstd.setText(tmp);
-                                if (lastchar.equals("+")){
-                                    tmp2 = hist.getText().toString();
-                                    hist.setText(tmp2 + tmp);
-                                } else if (lastchar.equals("‑")){
-                                    tmp2 = hist.getText().toString();
-                                    hist.setText(tmp2 + tmp);
-                                } else if (lastchar.equals("*")){
-                                    tmp2 = hist.getText().toString();
-                                    hist.setText(tmp2 + tmp);
-                                } else if (lastchar.equals("÷")){
-                                    tmp2 = hist.getText().toString();
-                                    hist.setText(tmp2 + tmp);
 
-                                }
+                            // Equals 0 Functions not fully implemented atm
+                            if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
+                                resultsstd.setText(tmp);
                                 break;
                             } else {
                                 tmp2 = hist.getText().toString();
