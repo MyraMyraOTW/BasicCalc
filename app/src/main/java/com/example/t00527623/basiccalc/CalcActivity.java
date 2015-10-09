@@ -58,6 +58,7 @@ public class CalcActivity extends AppCompatActivity {
     // performed after equals has been pressed do not include previous variables
     private boolean equalschck = false;
     private double Memory = 0.0;
+    private String lastchar;
 
     // Click listener for Memory
     private View.OnClickListener handlememory = new View.OnClickListener() {
@@ -71,15 +72,19 @@ public class CalcActivity extends AppCompatActivity {
                     break;
 
                 case R.id.MemN:
-                    tmp = resultsstd.getText().toString();
-                    tmpdbl = Double.parseDouble(tmp);
-                    Memory = Memory - tmpdbl;
+                    if (resultsstd.length() > 0) {
+                        tmp = resultsstd.getText().toString();
+                        tmpdbl = Double.parseDouble(tmp);
+                        Memory = Memory - tmpdbl;
+                    }
                     break;
 
                 case R.id.MemP:
-                    tmp = resultsstd.getText().toString();
-                    tmpdbl = Double.parseDouble(tmp);
-                    Memory = Memory + tmpdbl;
+                    if (resultsstd.length() > 0) {
+                        tmp = resultsstd.getText().toString();
+                        tmpdbl = Double.parseDouble(tmp);
+                        Memory = Memory + tmpdbl;
+                    }
                     break;
 
                 case R.id.MemR:
@@ -111,7 +116,7 @@ public class CalcActivity extends AppCompatActivity {
             TextView resultsstd = (TextView) findViewById(R.id.results);
             TextView hist = (TextView) findViewById(R.id.history);
             String tmp, tmp1, tmp2, tmp3;
-            double plus, minus, div, times, equals, PMCs, PMCc;
+            double plus=0, minus=0, div=0, times=0, equals=0, PMCs, PMCc;
             switch (v.getId()) {
                 case R.id.Cclear:
                     resultsstd.setText("");
@@ -132,6 +137,7 @@ public class CalcActivity extends AppCompatActivity {
                             tmp2 = hist.getText().toString();
                             plus = Double.parseDouble(tmp);
                             hist.setText(tmp2 + tmp + " + ");
+                            lastchar = "+";
                             resultsstd.setText("");
                         }
                     }
@@ -151,6 +157,7 @@ public class CalcActivity extends AppCompatActivity {
                             tmp2 = hist.getText().toString();
                             minus = Double.parseDouble(tmp);
                             hist.setText(tmp2 + tmp + " ‑ ");
+                            lastchar = "‑";
                             resultsstd.setText("");
                         }
                     }
@@ -170,6 +177,7 @@ public class CalcActivity extends AppCompatActivity {
                             tmp2 = hist.getText().toString();
                             times = Double.parseDouble(tmp);
                             hist.setText(tmp2 + tmp + " * ");
+                            lastchar = "*";
                             resultsstd.setText("");
                         }
                     }
@@ -189,6 +197,7 @@ public class CalcActivity extends AppCompatActivity {
                             tmp2 = hist.getText().toString();
                             div = Double.parseDouble(tmp);
                             hist.setText(tmp2 + tmp + " ÷ ");
+                            lastchar = "÷";
                             resultsstd.setText("");
                         }
                     }
@@ -204,17 +213,35 @@ public class CalcActivity extends AppCompatActivity {
 
                 case R.id.Bequal:
                     if(resultsstd.length() > 0) {
-                        equalschck = false;
-                        tmp = resultsstd.getText().toString();
-                        if (tmp.equals("0") || tmp.equals(null)) {
-                            resultsstd.setText("");
+                        if (equalschck == true){
                             break;
                         } else {
-                            tmp2 = hist.getText().toString();
-                            hist.setText(tmp2 + tmp);
-                            tmp3 = hist.getText().toString();
-                            equalscalc(tmp3);
-                            equalschck = true;
+                            equalschck = false;
+                            tmp = resultsstd.getText().toString();
+                            if (tmp.equals("0") || tmp.equals(null)) {
+                                resultsstd.setText(tmp);
+                                if (lastchar.equals("+")){
+                                    tmp2 = hist.getText().toString();
+                                    hist.setText(tmp2 + tmp);
+                                } else if (lastchar.equals("‑")){
+                                    tmp2 = hist.getText().toString();
+                                    hist.setText(tmp2 + tmp);
+                                } else if (lastchar.equals("*")){
+                                    tmp2 = hist.getText().toString();
+                                    hist.setText(tmp2 + tmp);
+                                } else if (lastchar.equals("÷")){
+                                    tmp2 = hist.getText().toString();
+                                    hist.setText(tmp2 + tmp);
+
+                                }
+                                break;
+                            } else {
+                                tmp2 = hist.getText().toString();
+                                hist.setText(tmp2 + tmp);
+                                tmp3 = hist.getText().toString();
+                                equalscalc(tmp3);
+                                equalschck = true;
+                            }
                         }
                     }
                     break;
@@ -232,7 +259,6 @@ public class CalcActivity extends AppCompatActivity {
             }
         }
     };
-
 
     // Math operation function
     public void equalscalc (String input) {
