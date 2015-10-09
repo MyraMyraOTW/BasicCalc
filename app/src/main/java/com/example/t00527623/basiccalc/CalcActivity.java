@@ -40,10 +40,10 @@ public class CalcActivity extends AppCompatActivity {
         findViewById(R.id.PMC).setOnClickListener(handleoperands);
 
         // Advanced Memory
-
-        // TextViews
-        // TextView resultsstd = (TextView) findViewById(R.id.results);
-        // TextView hist = (TextView) findViewById(R.id.history);
+        findViewById(R.id.MemC).setOnClickListener(handlememory);
+        findViewById(R.id.MemR).setOnClickListener(handlememory);
+        findViewById(R.id.MemN).setOnClickListener(handlememory);
+        findViewById(R.id.MemP).setOnClickListener(handlememory);
 
     }
 
@@ -54,52 +54,224 @@ public class CalcActivity extends AppCompatActivity {
         return true;
     }
 
+    // Global variable used to check if equals has been operated and makes it so operations
+    // performed after equals has been pressed do not include previous variables
+    private boolean equalschck = false;
+    private double Memory = 0.0;
+
+    // Click listener for Memory
+    private View.OnClickListener handlememory = new View.OnClickListener() {
+        public void onClick(View v) {
+            double tmpdbl;
+            String tmp;
+            TextView resultsstd = (TextView) findViewById(R.id.results);
+            switch (v.getId()) {
+                case R.id.MemC:
+                    Memory = 0.0;
+                    break;
+
+                case R.id.MemN:
+                    tmp = resultsstd.getText().toString();
+                    tmpdbl = Double.parseDouble(tmp);
+                    Memory = Memory - tmpdbl;
+                    break;
+
+                case R.id.MemP:
+                    tmp = resultsstd.getText().toString();
+                    tmpdbl = Double.parseDouble(tmp);
+                    Memory = Memory + tmpdbl;
+                    break;
+
+                case R.id.MemR:
+                    equalschck = true;
+                    resultsstd.setText(String.valueOf(Memory));
+                    break;
+            }
+        }
+    };
+
     // Click listener for Digits
     private View.OnClickListener handlenumbers = new View.OnClickListener() {
-        public  void onClick(View v) {
-            Button std = (Button)v;
+        public void onClick(View v) {
             TextView resultsstd = (TextView) findViewById(R.id.results);
+            TextView hist = (TextView) findViewById(R.id.history);
+            if (equalschck == true) {
+                hist.setText("");
+                resultsstd.setText("");
+            }
+            equalschck = false;
+            Button std = (Button)v;
             resultsstd.append(std.getText());
         }
     };
 
     // Click Listener for Operands
     private View.OnClickListener handleoperands = new View.OnClickListener() {
-      public void onClick(View v) {
-          TextView resultsstd = (TextView) findViewById(R.id.results);
-          String tmp, tmp1;
-          switch (v.getId()) {
-              case R.id.Cclear:
-                  resultsstd.setText("");
-                  break;
+        public void onClick(View v) {
+            TextView resultsstd = (TextView) findViewById(R.id.results);
+            TextView hist = (TextView) findViewById(R.id.history);
+            String tmp, tmp1, tmp2, tmp3;
+            double plus, minus, div, times, equals, PMCs, PMCc;
+            switch (v.getId()) {
+                case R.id.Cclear:
+                    resultsstd.setText("");
+                    hist.setText("");
+                    break;
 
-              case R.id.Bplus:
-                  break;
+                case R.id.Bplus:
+                    if(resultsstd.length() > 0){
+                        if (equalschck == true){
+                            hist.setText("");
+                        }
+                        equalschck = false;
+                        tmp = resultsstd.getText().toString();
+                        if (tmp.equals("0") || tmp.equals(null)){
+                            resultsstd.setText("");
+                            break;
+                        } else {
+                            tmp2 = hist.getText().toString();
+                            plus = Double.parseDouble(tmp);
+                            hist.setText(tmp2 + tmp + " + ");
+                            resultsstd.setText("");
+                        }
+                    }
+                    break;
 
-              case R.id.BBack:
-                  tmp = resultsstd.getText().toString();
-                  if (resultsstd.length() > 0){
-                      tmp1 = tmp.substring(0, tmp.length() - 1);
-                      resultsstd.setText(tmp1);
-                  }
+                case R.id.Bminus:
+                    if(resultsstd.length() > 0) {
+                        if (equalschck == true){
+                            hist.setText("");
+                        }
+                        equalschck = false;
+                        tmp = resultsstd.getText().toString();
+                        if (tmp.equals("0") || tmp.equals(null)) {
+                            resultsstd.setText("");
+                            break;
+                        } else {
+                            tmp2 = hist.getText().toString();
+                            minus = Double.parseDouble(tmp);
+                            hist.setText(tmp2 + tmp + " ‑ ");
+                            resultsstd.setText("");
+                        }
+                    }
+                    break;
 
+                case R.id.Btimes:
+                    if(resultsstd.length() > 0) {
+                        if (equalschck == true){
+                            hist.setText("");
+                        }
+                        equalschck = false;
+                        tmp = resultsstd.getText().toString();
+                        if (tmp.equals("0") || tmp.equals(null)) {
+                            resultsstd.setText("");
+                            break;
+                        } else {
+                            tmp2 = hist.getText().toString();
+                            times = Double.parseDouble(tmp);
+                            hist.setText(tmp2 + tmp + " * ");
+                            resultsstd.setText("");
+                        }
+                    }
+                    break;
 
-          }
-      }
+                case R.id.Bdiv:
+                    if(resultsstd.length() > 0) {
+                        if (equalschck == true){
+                            hist.setText("");
+                        }
+                        equalschck = false;
+                        tmp = resultsstd.getText().toString();
+                        if (tmp.equals("0") || tmp.equals(null)) {
+                            resultsstd.setText("");
+                            break;
+                        } else {
+                            tmp2 = hist.getText().toString();
+                            div = Double.parseDouble(tmp);
+                            hist.setText(tmp2 + tmp + " ÷ ");
+                            resultsstd.setText("");
+                        }
+                    }
+                    break;
+
+                case R.id.BBack:
+                    tmp = resultsstd.getText().toString();
+                    if (resultsstd.length() > 0){
+                        tmp1 = tmp.substring(0, tmp.length() - 1);
+                        resultsstd.setText(tmp1);
+                    }
+                    break;
+
+                case R.id.Bequal:
+                    if(resultsstd.length() > 0) {
+                        equalschck = false;
+                        tmp = resultsstd.getText().toString();
+                        if (tmp.equals("0") || tmp.equals(null)) {
+                            resultsstd.setText("");
+                            break;
+                        } else {
+                            tmp2 = hist.getText().toString();
+                            hist.setText(tmp2 + tmp);
+                            tmp3 = hist.getText().toString();
+                            equalscalc(tmp3);
+                            equalschck = true;
+                        }
+                    }
+                    break;
+
+                case R.id.PMC:
+                    String chkperiod;
+                    chkperiod = resultsstd.getText().toString();
+                    if(resultsstd.length() > 0 && !chkperiod.equals(".")) {
+                        tmp = resultsstd.getText().toString();
+                        PMCs = Double.parseDouble(tmp);
+                        PMCc = PMCs * -1;
+                        resultsstd.setText(String.valueOf(PMCc));
+                    }
+                    break;
+            }
+        }
     };
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    // Math operation function
+    public void equalscalc (String input) {
+        TextView resultsstd = (TextView) findViewById(R.id.results);
+        input = input.replace(" ","");
+
+        String parsedInteger = "";
+        String operator = "";
+        double num = 0;
+        for (int i = 0; i < input.length(); i++){
+            char c = input.charAt(i);
+            // Checks if digit is digit or period so doubles are allowed unfortunately multiple
+            // periods will result in an error
+            if (Character.isDigit(c) || c == '.' || c == '-') {
+                parsedInteger += c;
+            }
+            // Checks for operators Minus in this case has been modified to the UTF-8 character
+            // named non-breaking hyphen for added functionality with negative numbers
+            if (c == '+' || c == '‑' || c == '*' || c == '÷' || i == input.length()-1){
+                double parsed = Double.parseDouble(parsedInteger);
+                if (operator == "") {
+                    num = parsed;
+                }
+                else {
+                    if (operator.equals("+")) {
+                        num += parsed;
+                    }else if (operator.equals("‑")){
+                        num -= parsed;
+                    }else if (operator.equals("*")){
+                        num = num * parsed;
+                    }else if (operator.equals("÷")){
+                        num = num / parsed;
+                    }
+                }
+
+                parsedInteger ="";
+                operator = ""+c;
+            }
         }
-
-        return super.onOptionsItemSelected(item);
+        resultsstd.setText(String.valueOf(num));
     }
 }

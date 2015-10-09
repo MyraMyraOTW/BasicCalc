@@ -34,8 +34,8 @@
                     android:paddingLeft="10dp"
                     android:singleLine="true"
                     android:gravity="center_vertical|right"
-                    android:text="@string/histhint"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/black"
+                    android:hint="@string/histhint" />
             </TableRow>
 
             <TableRow
@@ -104,18 +104,17 @@
                         android:id="@+id/MemP"
                         android:layout_weight="1"
                         android:text="@string/Mp"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        android:background="?android:attr/selectableItemBackground" />
 
                     <Button
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:id="@+id/option"
+                        android:text="@string/MR"
+                        android:id="@+id/button"
                         android:layout_weight="1"
-                        android:text="ADV"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:textColor="@android:color/black" />
+                        android:background="?android:attr/selectableItemBackground" />
 
                 </LinearLayout>
             </TableRow>
