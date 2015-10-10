@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.NumberFormat;
+
 public class CalcActivity extends AppCompatActivity {
 
     @Override
@@ -63,6 +67,7 @@ public class CalcActivity extends AppCompatActivity {
     // Memory Class Variable
     private double Memory = 0.0;
     private String lastchar;
+    private boolean decimalchk = false;
 
     // Click listener for Memory
     private View.OnClickListener handlememory = new View.OnClickListener() {
@@ -150,7 +155,7 @@ public class CalcActivity extends AppCompatActivity {
                         }
                         equalschck = false;
                         tmp = resultsstd.getText().toString();
-                        if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")){
+                        if (tmp.equals("NaN") || tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")){
                             resultsstd.setText("");
                             break;
                         } else {
@@ -170,7 +175,7 @@ public class CalcActivity extends AppCompatActivity {
                         }
                         equalschck = false;
                         tmp = resultsstd.getText().toString();
-                        if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
+                        if (tmp.equals("NaN") || tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
                             resultsstd.setText("");
                             break;
                         } else {
@@ -190,7 +195,7 @@ public class CalcActivity extends AppCompatActivity {
                         }
                         equalschck = false;
                         tmp = resultsstd.getText().toString();
-                        if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
+                        if (tmp.equals("NaN") || tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
                             resultsstd.setText("");
                             break;
                         } else {
@@ -210,7 +215,7 @@ public class CalcActivity extends AppCompatActivity {
                         }
                         equalschck = false;
                         tmp = resultsstd.getText().toString();
-                        if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
+                        if (tmp.equals("NaN") || tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
                             resultsstd.setText("");
                             break;
                         } else {
@@ -240,7 +245,7 @@ public class CalcActivity extends AppCompatActivity {
                             tmp = resultsstd.getText().toString();
 
                             // Equals 0 Functions not fully implemented atm
-                            if (tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
+                            if (tmp.equals("NaN") || tmp.equals("Infinity") || tmp.equals(null) || tmp.equals(".")) {
                                 resultsstd.setText(tmp);
                                 break;
                             } else {
@@ -306,6 +311,12 @@ public class CalcActivity extends AppCompatActivity {
                 operator = ""+c;
             }
         }
-        resultsstd.setText(String.valueOf(num));
+        DecimalFormat formatter = new DecimalFormat("##.#####E0");
+        String chk = String.valueOf(num);
+        if(chk.length() > 12) {
+            resultsstd.setText(String.valueOf(formatter.format(num)));
+        } else {
+            resultsstd.setText(String.valueOf(String.valueOf(num)));
+        }
     }
 }
